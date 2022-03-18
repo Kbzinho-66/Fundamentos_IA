@@ -17,7 +17,6 @@ This notebook uses the student profile
 :- discontiguous director/2.
 :- discontiguous movie/2.
 
-
 movie(american_beauty, 1999).
 director(american_beauty, sam_mendes).
 actor(american_beauty, kevin_spacey, lester_burnham).
@@ -2157,24 +2156,25 @@ actor(an_american_rhapsody, zolt_n_seress, george).
 actress(an_american_rhapsody, klaudia_szab, maria_at_4).
 actor(an_american_rhapsody, zsolt_zagoni, russian_soldier).
 
-lançado_entre(M, Y1, Y2) :-
-    movie(M, ANO),
+
+% Minhas cláusulas
+lançado_entre(M,Y1,Y2) :-
+    movie(M,ANO),
     ANO &gt;= Y1,
     ANO =&lt; Y2.
 
 mesmo_ano(M1,M2) :-
-    movie(M1,ANO1),
-    movie(M2,ANO2),
-    M1 \= M2,
-    ANO1 = ANO2.
+    movie(M1,Ano1),
+    movie(M2,Ano2),
+    Ano1 = Ano2.
 
 elenco(A,M) :-
-    
+    actor(M, A, _);
+    actress(M, A, _).
 
-
-
-
-
+dirigido_por(Ator, Diretor) :-
+    director(Filme, Diretor),
+    elenco(Ator, Filme).
 </div>
 
 <div class="nb-cell query" name="q1">
@@ -2195,8 +2195,7 @@ movie(FILME,ANO).
 
 <div class="nb-cell query" name="q5">
 actor(Filme, Ator1, _),
-actor(OutroFilme, Ator1, _),
-Filme \= OutroFilme.
+actor(OutroFilme, Ator1, _).
 </div>
 
 <div class="nb-cell query" name="q6">
@@ -2216,7 +2215,35 @@ actress(FILME, DIRATOR, _).
 </div>
 
 <div class="nb-cell query" name="q10">
+lançado_entre(spies_like_us, 1980, 2000).
+</div>
 
+<div class="nb-cell query" name="q11">
+lançado_entre(spies_like_us, 1990, 2000).
+</div>
+
+<div class="nb-cell query" name="q12">
+mesmo_ano(an_american_rhapsody, torrance_rises).
+</div>
+
+<div class="nb-cell query" name="q13">
+mesmo_ano(star_wars_episode_i__the_phantom_menace, torrance_rises).
+</div>
+
+<div class="nb-cell query" name="q14">
+elenco(sofia_coppola, the_outsiders).
+</div>
+
+<div class="nb-cell query" name="q15">
+elenco(matt_dillon, the_outsiders).
+</div>
+
+<div class="nb-cell query" name="q16">
+dirigido_por(karel_dobry, bill_raye).
+</div>
+
+<div class="nb-cell query" name="q17">
+dirigido_por(karel_dobry, brian_de_palma).
 </div>
 
 <div class="nb-cell markdown" name="md2">
