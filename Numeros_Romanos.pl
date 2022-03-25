@@ -1,10 +1,10 @@
 % Numeros romanos entre 1 <= X <= 399
 romano(X) :-
         X > 399,
-        write('Numero deve estar entre 1 e 399'), nl.
+        write('Numero deve estar entre 1 e 399'), nl, !.
 romano(X) :-
         X < 0,
-        write('Numero deve estar entre 1 e 399'), nl.
+        write('Numero deve estar entre 1 e 399'), nl, !.
 romano(X) :-
         X >= 100,
         write('C'),
@@ -32,7 +32,7 @@ romano(X) :-
         romano(Y).
 romano(X) :-
         X == 9,
-        write('IX').
+        write('IX'), !.
 romano(X) :-
         X >= 5, X < 9,
         write('V'),
@@ -40,7 +40,7 @@ romano(X) :-
         romano(Y).
 romano(X) :-
         X == 4,
-        write('IV').
+        write('IV'), !.
 romano(X) :-
         X >= 1, X < 4,
         write('I'),
