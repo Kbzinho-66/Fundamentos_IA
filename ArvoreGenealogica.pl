@@ -55,26 +55,28 @@ irma(X,Y) :-
     irmaos(X,Y),
     sexo(X, fem).
 
-% X é tio de Y se 
-    % X for homem e
+% X é um dos tios de Y se
     % X for um dos irmaos de Z e
     % Z é um dos progenitores de Y.
+tios(X,Y) :-
+    irmaos(X,Z),
+    progenitor(Z,Y).
+
 tio(X,Y) :-
-    sexo(X, masc),
-    irmaos(X,Z),
-    progenitor(Z,Y).
+    tios(X,Y),
+    sexo(X, masc).
 
-% X é tia de Y se 
-    % X for mulher e
-    % X for um dos irmaos de Z e
-    % Z é um dos progenitores de Y.
-tia(X,Y) :-
-    sexo(X, fem),
-    irmaos(X,Z),
-    progenitor(Z,Y).
+tio(X,Y) :-
+    tios(X,Y),
+    sexo(X, fem).
 
+% X é um dos primos de Y se
+    % ambos não forem a mesma pessoa e
+    % existe um progenitor Px de X e
+    % existe um progenitor Py de Y e
+    % Px e Py forem irmãos
 primos(X,Y) :-
-    X \= Y,
+    X \== Y,
     progenitor(Px,X),
     progenitor(Py,Y),
     irmaos(Px, Py).
@@ -87,16 +89,21 @@ prima(X,Y) :-
     primos(X,Y),
     sexo(X, fem).
 
-avoo(X,Y) :-
-    sexo(X, masc),
+% X é um dos avôs de Y se
+    % X for progenitor do progenitor de Y
+avos(X,Y) :-
     progenitor(X,Z),
     progenitor(Z,Y).
+
+avoo(X,Y) :-
+    avos(X,Y),
+    sexo(X, masc).
 
 avoh(X,Y) :-
-    sexo(X, fem),
-    progenitor(X,Z),
-    progenitor(Z,Y).
+    avos(X,Y),
+    sexo(X, fem).
 
+% *** QUERIES *** %
 
 % 1) João é filho de José?
 
@@ -108,3 +115,17 @@ avoh(X,Y) :-
 
 % 3) Quem são os primos do Mário?
 
+% primos(mario, P).
+
+% 4) Quantos sobrinhos/sobrinhas com um Tio existem na família Pinheiro?
+
+% tio(_, S).
+
+% 5) Quem são os ascendentes de Carlos?
+
+% descendente(carlos, D).
+
+% 6) A Helena tem irmãos? E irmãs?
+
+% irmao(I, helena).
+% irma(I, helena).

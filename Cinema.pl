@@ -1,15 +1,3 @@
-<div class="notebook">
-
-<div class="nb-cell markdown" name="md1">
-This notebook uses the student profile
-</div>
-
-<div class="nb-cell program" name="p1">
-% Inteligência Artificial - UCS
-% Data: 08/03/2021
-% Dataset público
-
-
 % Base de Fatos
 
 :- discontiguous actress/3.
@@ -2158,10 +2146,10 @@ actor(an_american_rhapsody, zsolt_zagoni, russian_soldier).
 
 
 % Minhas cláusulas
-lançado_entre(M,Y1,Y2) :-
+lancado_entre(M,Y1,Y2) :-
     movie(M,ANO),
-    ANO &gt;= Y1,
-    ANO =&lt; Y2.
+    ANO >= Y1,
+    ANO =< Y2.
 
 mesmo_ano(M1,M2) :-
     movie(M1,Ano1),
@@ -2175,90 +2163,51 @@ elenco(A,M) :-
 dirigido_por(Ator, Diretor) :-
     director(Filme, Diretor),
     elenco(Ator, Filme).
-</div>
 
-<div class="nb-cell query" name="q1">
-movie(american_beauty,ANO).
-</div>
+% Queries
 
-<div class="nb-cell query" name="q2">
-movie(FILME,2000).
-</div>
+% Em que ano o filme American Beauty foi lançado?
+% movie(american_beauty,ANO).
 
-<div class="nb-cell query" name="q3">
-movie(X,ANO), ANO &lt; 2000.
-</div>
+% Encontre um filme lançado em 2000
+% movie(FILME,2000).
 
-<div class="nb-cell query" name="q4">
-movie(FILME,ANO).
-</div>
+% Encontre um filme lançado antes de 2000
+% movie(X,ANO), ANO < 2000.
 
-<div class="nb-cell query" name="q5">
-actor(Filme, Ator1, _),
-actor(OutroFilme, Ator1, _).
-</div>
+% Consulte os filmes e seus anos de lançamento
+% movie(FILME,ANO).
 
-<div class="nb-cell query" name="q6">
-director(FILME, DIRETOR),
-actress(FILME, scarlett_johansson, _).
-</div>
+% Encontre um ator que tenha participado em mais de um filme
+% actor(Filme, Ator1, _),
+% actor(OutroFilme, Ator1, _).
 
-<div class="nb-cell query" name="q7">
-director(_, DIRATOR),
-actor(FILME, DIRATOR, _).
-</div>
+% Encontre um diretor que tenha dirigido um filme em que a atriz Scarlett Johansson atua
+% director(FILME, DIRETOR),
+% actress(FILME, scarlett_johansson, _).
 
-<div class="nb-cell query" name="q9">
-director(_, DIRATOR),
-actor(FILME, DIRATOR, _);
-actress(FILME, DIRATOR, _).
-</div>
+% Encontre atores que também tenham dirigido filmes.
+% director(_, DIRATOR),
+% actor(FILME, DIRATOR, _).
 
-<div class="nb-cell query" name="q10">
-lançado_entre(spies_like_us, 1980, 2000).
-</div>
+% Encontre um ator ou atriz que já tenha dirigido filmes.
+% director(_, DIRATOR),
+% actor(FILME, DIRATOR, _);
+% actress(FILME, DIRATOR, _).
 
-<div class="nb-cell query" name="q11">
-lançado_entre(spies_like_us, 1990, 2000).
-</div>
+% lancado_entre(spies_like_us, 1980, 2000).
 
-<div class="nb-cell query" name="q12">
-mesmo_ano(an_american_rhapsody, torrance_rises).
-</div>
+% lancado_entre(spies_like_us, 1990, 2000).
 
-<div class="nb-cell query" name="q13">
-mesmo_ano(star_wars_episode_i__the_phantom_menace, torrance_rises).
-</div>
+% mesmo_ano(an_american_rhapsody, torrance_rises).
 
-<div class="nb-cell query" name="q14">
-elenco(sofia_coppola, the_outsiders).
-</div>
+% mesmo_ano(star_wars_episode_i__the_phantom_menace, torrance_rises).
 
-<div class="nb-cell query" name="q15">
-elenco(matt_dillon, the_outsiders).
-</div>
+% elenco(sofia_coppola, the_outsiders).
 
-<div class="nb-cell query" name="q16">
-dirigido_por(karel_dobry, bill_raye).
-</div>
+% elenco(matt_dillon, the_outsiders).
 
-<div class="nb-cell query" name="q17">
-dirigido_por(karel_dobry, brian_de_palma).
-</div>
+% dirigido_por(karel_dobry, bill_raye).
 
-<div class="nb-cell markdown" name="md2">
+% dirigido_por(karel_dobry, brian_de_palma).
 
-</div>
-
-<div class="nb-cell program" data-background="true" data-singleline="true" name="p2">
-% Student exercise profile
-:- set_prolog_flag(occurs_check, error).		% disallow cyclic terms
-:- set_prolog_stack(global, limit(8 000 000)).  % limit term space (8Mb)
-:- set_prolog_stack(local,  limit(2 000 000)).  % limit environment space
-</div>
-
-<div class="nb-cell query" name="q8">
-
-</div>
-
-</div>
