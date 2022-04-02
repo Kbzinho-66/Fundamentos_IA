@@ -100,3 +100,11 @@ soma([N|R], S) :-
     S is N + SR.
 
 % 8) Defina um predicado que determine o item máximo em uma lista.
+maior(A, B, A) :-
+    A >= B, !.
+maior(_, B, B) :- !.
+max([M], M) :- !.
+max([C|R], M) :- 
+    max(R, Resto),
+    maior(C, Resto, M).
+
